@@ -21,22 +21,6 @@ namespace AdvancedCSharpClassProject
         }
 
         /// <summary>
-        /// Displays and shows knownledge of polymorphism
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void polymorphismTesting_Click(object sender, EventArgs e)
-        {
-            IAnimal[] myAnimal = { new LandAnimals { Name = "Dog", Age =  5 }, new
-                      AquaticAnimal{ Name = "Fish", Age = 1 } };
-
-            foreach (IAnimal a in myAnimal)
-            {
-                MessageBox.Show(a.DisplayAnimalInfo());
-            }
-        }
-
-        /// <summary>
         /// Reads the data from the SampleWriting.txt file
         /// </summary>
         /// <param name="sender"></param>
@@ -74,8 +58,8 @@ namespace AdvancedCSharpClassProject
         /// <param name="e"></param>
         private void WriteToFileBtn_Click(object sender, EventArgs e)
         {
-            IAnimal[] myAnimal = { new LandAnimals { Name = "Dog", Age =  5 }, new
-                      AquaticAnimal{ Name = "Fish", Age = 1 } };
+            IAnimal[] myAnimal = { new LandAnimals { Name = "Dog", Age =  5, Color = "Blue", NotesToSitter = "None", OwnerId = 1, Food = "all of it" }, new
+                      AquaticAnimal{ Name = "Fish", Age = 1, Color = "Blue", NotesToSitter = "None", OwnerId = 1, Food = "all of it"  } };
 
             string path = "SampleWriting.txt";
 

@@ -24,7 +24,7 @@ namespace AdvancedCSharpClassProject.Classes.BaseClasses
 
         public string DisplayAnimalInfo()
         {
-            throw new NotImplementedException();
+            return $"The animal's name is {Name}, and their age is {Age}";
         }
     }
 }

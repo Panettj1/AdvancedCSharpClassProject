@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.polymorphismTesting = new System.Windows.Forms.Button();
             this.readFileBtn = new System.Windows.Forms.Button();
             this.writeToFileBtn = new System.Windows.Forms.Button();
             this.openDbQueryPageButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // polymorphismTesting
-            // 
-            this.polymorphismTesting.Location = new System.Drawing.Point(12, 23);
-            this.polymorphismTesting.Name = "polymorphismTesting";
-            this.polymorphismTesting.Size = new System.Drawing.Size(265, 121);
-            this.polymorphismTesting.TabIndex = 0;
-            this.polymorphismTesting.Text = "PolyMorphism Testing";
-            this.polymorphismTesting.UseVisualStyleBackColor = true;
-            this.polymorphismTesting.Click += new System.EventHandler(this.polymorphismTesting_Click);
             // 
             // readFileBtn
             // 
@@ -82,7 +71,6 @@
             this.Controls.Add(this.openDbQueryPageButton);
             this.Controls.Add(this.writeToFileBtn);
             this.Controls.Add(this.readFileBtn);
-            this.Controls.Add(this.polymorphismTesting);
             this.Name = "HomePage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -91,8 +79,6 @@
         }
 
         #endregion
-
-        private Button polymorphismTesting;
         private Button readFileBtn;
         private Button writeToFileBtn;
         private Button openDbQueryPageButton;
