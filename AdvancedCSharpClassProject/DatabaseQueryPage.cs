@@ -9,18 +9,14 @@ namespace AdvancedCSharpClassProject
     public partial class DatabaseQueryPage : Form
     {
         private readonly ApplicationDbContext _applicationDbContext;
-        private readonly AnimalCollection<AquaticAnimal> _aquaticAnimalCollection;
-        private readonly AnimalCollection<LandAnimals> _landAnimalCollection;
 
         /// <summary>
-        /// Initializes page, and setsup combo boxes
+        /// Initializes page, and sets up combo boxes
         /// </summary>
         public DatabaseQueryPage()
         {
             InitializeComponent();
             _applicationDbContext = new ApplicationDbContext();
-            _aquaticAnimalCollection = new AnimalCollection<AquaticAnimal>(_applicationDbContext);
-            _landAnimalCollection = new AnimalCollection<LandAnimals>(_applicationDbContext);
 
             AddToDbTypeComboBox.Items.Add("AquaticAnimal");
             AddToDbTypeComboBox.Items.Add("LandAnimal");
@@ -56,11 +52,11 @@ namespace AdvancedCSharpClassProject
                     MessageBox.Show("No animal was found with that name");
                 }
                 else foreach (var aa in animal)
-                    {
+                {
                         MessageBox.Show($"Animal was found with the name {aa.Name}\n" +
                                         $"It's color is {aa.Color}\n" +
                                         $"And it's age is {aa.Age}");
-                    }
+                }
             }
 
             if (isValid && animalType == "LandAnimal")
@@ -72,11 +68,11 @@ namespace AdvancedCSharpClassProject
                     MessageBox.Show("No animal was found with that name");
                 }
                 else foreach (var aa in animal)
-                    {
+                {
                         MessageBox.Show($"Animal was found with the name {aa.Name}\n" +
                                         $"It's color is {aa.Color}\n" +
                                         $"And it's age is {aa.Age}");
-                    }
+                }
             }
         }
 
@@ -104,7 +100,6 @@ namespace AdvancedCSharpClassProject
 
             if (isValid && animalType == "AquaticAnimal")
             {
-                _aquaticAnimalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
 
                 var animalCollection = new AnimalCollection<AquaticAnimal>(new ApplicationDbContext());
                 var owner = new Owner { Name = "Fish Owner" };
@@ -119,6 +114,8 @@ namespace AdvancedCSharpClassProject
                 animal.OwnerId = owner.Id;
                 animal.Food = "Food";
 
+                animalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
+
                 // Create a new thread to add the animal to the database
                 Thread thread = new Thread(async () =>
                 {
@@ -129,10 +126,8 @@ namespace AdvancedCSharpClassProject
 
             if (isValid && animalType == "LandAnimal")
             {
-                _landAnimalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
-
                 var animalCollection = new AnimalCollection<LandAnimals>(new ApplicationDbContext());
-                var owner = new Owner {Name = "Land Owner" };
+                var owner = new Owner { Name = "Land Owner" };
 
                 var animal = new LandAnimals();
 
@@ -144,6 +139,8 @@ namespace AdvancedCSharpClassProject
                 animal.OwnerId = owner.Id;
                 animal.Food = "Food";
 
+                animalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
+
                 // Create a new thread to add the animal to the database
                 Thread thread = new Thread(async () =>
                 {
@@ -152,6 +149,7 @@ namespace AdvancedCSharpClassProject
                 thread.Start();
             }
         }
+
         private void AnimalCollection_AnimalAdded(object sender, AnimalAddedEventArgs e)
         {
             MessageBox.Show($"Successfully added {e.Animal.Name} to the database.");

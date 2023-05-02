@@ -44,7 +44,6 @@ namespace AdvancedCSharpClassProject.Collections
 
         public async Task AddAnimalToDatabase<T>(T animal) where T : IAnimal
         {
-
             try
             {
                 var animalAdded = AnimalAdded;
