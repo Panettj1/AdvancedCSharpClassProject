@@ -1,21 +1,16 @@
 ﻿using AdvancedCSharpClassProject.Classes;
 using AdvancedCSharpClassProject.Collections;
 using AdvancedCSharpClassProject.Data;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace AdvancedCSharpClassProject
 {
     public partial class DatabaseQueryPage : Form
     {
-        private readonly ApplicationDbContext applicationDbContext;
+        private readonly ApplicationDbContext _applicationDbContext;
+        private readonly AnimalCollection<AquaticAnimal> _aquaticAnimalCollection;
+        private readonly AnimalCollection<LandAnimals> _landAnimalCollection;
 
         /// <summary>
         /// Initializes page, and setsup combo boxes
@@ -23,7 +18,9 @@ namespace AdvancedCSharpClassProject
         public DatabaseQueryPage()
         {
             InitializeComponent();
-            applicationDbContext = new ApplicationDbContext();
+            _applicationDbContext = new ApplicationDbContext();
+            _aquaticAnimalCollection = new AnimalCollection<AquaticAnimal>(_applicationDbContext);
+            _landAnimalCollection = new AnimalCollection<LandAnimals>(_applicationDbContext);
 
             AddToDbTypeComboBox.Items.Add("AquaticAnimal");
             AddToDbTypeComboBox.Items.Add("LandAnimal");
@@ -31,7 +28,6 @@ namespace AdvancedCSharpClassProject
             SearchDbTypeComboBox.Items.Add("AquaticAnimal");
             SearchDbTypeComboBox.Items.Add("LandAnimal");
         }
-
 
         /// <summary>
         /// Searches Database for animals based off of user input
@@ -53,7 +49,7 @@ namespace AdvancedCSharpClassProject
 
             if (isValid && animalType == "AquaticAnimal")
             {
-                var animal = applicationDbContext.AqauticAnimals.Where(aa => aa.Name == animalName).ToList();
+                var animal = _applicationDbContext.AqauticAnimals.Where(aa => aa.Name == animalName).ToList();
 
                 if (!animal.Any())
                 {
@@ -69,7 +65,7 @@ namespace AdvancedCSharpClassProject
 
             if (isValid && animalType == "LandAnimal")
             {
-                var animal = applicationDbContext.LandAnimals.Where(la => la.Name == animalName).ToList();
+                var animal = _applicationDbContext.LandAnimals.Where(la => la.Name == animalName).ToList();
 
                 if (!animal.Any())
                 {
@@ -108,6 +104,8 @@ namespace AdvancedCSharpClassProject
 
             if (isValid && animalType == "AquaticAnimal")
             {
+                _aquaticAnimalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
+
                 var animalCollection = new AnimalCollection<AquaticAnimal>(new ApplicationDbContext());
                 var owner = new Owner { Name = "Fish Owner" };
 
@@ -122,17 +120,17 @@ namespace AdvancedCSharpClassProject
                 animal.Food = "Food";
 
                 // Create a new thread to add the animal to the database
-                Thread thread = new Thread(() =>
+                Thread thread = new Thread(async () =>
                 {
-                    animalCollection.AddAnimalToDatabase(animal);
+                   await animalCollection.AddAnimalToDatabase(animal);
                 });
                 thread.Start();
-
-                MessageBox.Show("Successfully added to DB");
             }
 
             if (isValid && animalType == "LandAnimal")
             {
+                _landAnimalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
+
                 var animalCollection = new AnimalCollection<LandAnimals>(new ApplicationDbContext());
                 var owner = new Owner {Name = "Land Owner" };
 
@@ -147,14 +145,16 @@ namespace AdvancedCSharpClassProject
                 animal.Food = "Food";
 
                 // Create a new thread to add the animal to the database
-                Thread thread = new Thread(() =>
+                Thread thread = new Thread(async () =>
                 {
-                    animalCollection.AddAnimalToDatabase(animal);
+                   await animalCollection.AddAnimalToDatabase(animal);
                 });
                 thread.Start();
-
-                MessageBox.Show("Successfully added to DB");
             }
+        }
+        private void AnimalCollection_AnimalAdded(object sender, AnimalAddedEventArgs e)
+        {
+            MessageBox.Show($"Successfully added {e.Animal.Name} to the database.");
         }
     }
 }

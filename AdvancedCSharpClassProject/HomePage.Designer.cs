@@ -35,7 +35,7 @@
             // 
             // readFileBtn
             // 
-            this.readFileBtn.Location = new System.Drawing.Point(12, 311);
+            this.readFileBtn.Location = new System.Drawing.Point(523, 81);
             this.readFileBtn.Name = "readFileBtn";
             this.readFileBtn.Size = new System.Drawing.Size(265, 115);
             this.readFileBtn.TabIndex = 1;
@@ -45,7 +45,7 @@
             // 
             // writeToFileBtn
             // 
-            this.writeToFileBtn.Location = new System.Drawing.Point(12, 173);
+            this.writeToFileBtn.Location = new System.Drawing.Point(523, 202);
             this.writeToFileBtn.Name = "writeToFileBtn";
             this.writeToFileBtn.Size = new System.Drawing.Size(265, 115);
             this.writeToFileBtn.TabIndex = 2;
@@ -55,7 +55,7 @@
             // 
             // openDbQueryPageButton
             // 
-            this.openDbQueryPageButton.Location = new System.Drawing.Point(511, 23);
+            this.openDbQueryPageButton.Location = new System.Drawing.Point(523, 323);
             this.openDbQueryPageButton.Name = "openDbQueryPageButton";
             this.openDbQueryPageButton.Size = new System.Drawing.Size(265, 115);
             this.openDbQueryPageButton.TabIndex = 3;
@@ -67,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(793, 443);
             this.Controls.Add(this.openDbQueryPageButton);
             this.Controls.Add(this.writeToFileBtn);
             this.Controls.Add(this.readFileBtn);

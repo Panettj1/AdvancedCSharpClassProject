@@ -13,6 +13,9 @@ namespace AdvancedCSharpClassProject.Collections
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
+        public delegate void AnimalAddedEventHandler(object sender, AnimalAddedEventArgs e);
+        public event AnimalAddedEventHandler AnimalAdded;
+
         public AnimalCollection(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
@@ -44,18 +47,32 @@ namespace AdvancedCSharpClassProject.Collections
 
             try
             {
+                var animalAdded = AnimalAdded;
+
                 _applicationDbContext.Add(animal);
                 _applicationDbContext.Add(animal.Owner);
                 await _applicationDbContext.SaveChangesAsync();
 
-                Console.WriteLine($"Added {animal.Name} to the database.");
+                animalAdded?.Invoke(this, new AnimalAddedEventArgs(animal));
             }
             catch (DbUpdateException ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
                 Console.WriteLine("Inner exception: " + ex.InnerException?.Message);
             }
+        }
+    }
+    public class AnimalAddedEventArgs : EventArgs
+    {
+        private readonly IAnimal _animal;
+        public AnimalAddedEventArgs(IAnimal animal)
+        {
+            _animal = animal;
+        }
 
+        public IAnimal Animal
+        {
+            get { return _animal; }
         }
     }
 }
