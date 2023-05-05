@@ -49,7 +49,6 @@ namespace AdvancedCSharpClassProject.Collections
                 var animalAdded = AnimalAdded;
 
                 _applicationDbContext.Add(animal);
-                _applicationDbContext.Add(animal.Owner);
                 await _applicationDbContext.SaveChangesAsync();
 
                 animalAdded?.Invoke(this, new AnimalAddedEventArgs(animal));

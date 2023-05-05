@@ -90,8 +90,29 @@ namespace AdvancedCSharpClassProject
         /// <param name="e"></param>
         private void openDbQueryPageButton_Click(object sender, EventArgs e)
         {
+            Form.ActiveForm.Hide();
             DatabaseQueryPage queryPage = new DatabaseQueryPage();
             queryPage.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

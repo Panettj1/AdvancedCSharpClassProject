@@ -100,59 +100,140 @@ namespace AdvancedCSharpClassProject
 
             if (isValid && animalType == "AquaticAnimal")
             {
-
                 var animalCollection = new AnimalCollection<AquaticAnimal>(new ApplicationDbContext());
-                var owner = new Owner { Name = "Fish Owner" };
 
-                var animal = new AquaticAnimal();
+                int ownerId = Convert.ToInt32(ownerIdUpDown.Value);
+                Owner existingOwner = _applicationDbContext.Owners.FirstOrDefault(o => o.Id == ownerId);
 
-                animal.Name = animalName;
-                animal.Age = age;
-                animal.Color = color;
-                animal.NotesToSitter = notesToSitter;
-                animal.Owner = owner;
-                animal.OwnerId = owner.Id;
-                animal.Food = "Food";
-
-                animalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
-
-                // Create a new thread to add the animal to the database
-                Thread thread = new Thread(async () =>
+                if (existingOwner != null)
                 {
-                   await animalCollection.AddAnimalToDatabase(animal);
-                });
-                thread.Start();
+                    // If the owner exists, create a new AquaticAnimal object with the owner ID
+                    var animal = new AquaticAnimal
+                    {
+                        OwnerId = existingOwner.Id,
+                        Name = animalName,
+                        Age = age,
+                        Color = color,
+                        NotesToSitter = notesToSitter,
+                        Food = "Food"
+                    };
+
+                    animalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
+
+                    // Create a new thread to add the animal to the database
+                    Thread thread = new Thread(async () =>
+                    {
+                        await animalCollection.AddAnimalToDatabase(animal);
+                    });
+                    thread.Start();
+                }
+                else
+                {
+                    // If the owner doesn't exist, create a new owner and a new AquaticAnimal object
+                    var owner = new Owner
+                    {
+                        Name = ownerNameTextBox.Text
+                    };
+
+                    _applicationDbContext.Owners.Add(owner);
+                    _applicationDbContext.SaveChanges();
+
+                    var animal = new AquaticAnimal
+                    {
+                        OwnerId = owner.Id,
+                        Name = animalName,
+                        Age = age,
+                        Color = color,
+                        NotesToSitter = notesToSitter,
+                        Food = "Food"
+                    };
+
+                    animalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
+
+                    // Create a new thread to add the animal to the database
+                    Thread thread = new Thread(async () =>
+                    {
+                        await animalCollection.AddAnimalToDatabase(animal);
+                    });
+                    thread.Start();
+                }
             }
 
             if (isValid && animalType == "LandAnimal")
             {
-                var animalCollection = new AnimalCollection<LandAnimals>(new ApplicationDbContext());
-                var owner = new Owner { Name = "Land Owner" };
+                var animalCollection = new AnimalCollection<AquaticAnimal>(new ApplicationDbContext());
 
-                var animal = new LandAnimals();
+                int ownerId = Convert.ToInt32(ownerIdUpDown.Value);
+                Owner existingOwner = _applicationDbContext.Owners.FirstOrDefault(o => o.Id == ownerId);
 
-                animal.Name = animalName;
-                animal.Age = age;
-                animal.Color = color;
-                animal.NotesToSitter = notesToSitter;
-                animal.Owner = owner;
-                animal.OwnerId = owner.Id;
-                animal.Food = "Food";
-
-                animalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
-
-                // Create a new thread to add the animal to the database
-                Thread thread = new Thread(async () =>
+                if (existingOwner != null)
                 {
-                   await animalCollection.AddAnimalToDatabase(animal);
-                });
-                thread.Start();
+                    // If the owner exists, create a new AquaticAnimal object with the owner ID
+                    var animal = new AquaticAnimal
+                    {
+                        OwnerId = existingOwner.Id,
+                        Name = animalName,
+                        Age = age,
+                        Color = color,
+                        NotesToSitter = notesToSitter,
+                        Food = "Food"
+                    };
+
+                    animalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
+
+                    // Create a new thread to add the animal to the database
+                    Thread thread = new Thread(async () =>
+                    {
+                        await animalCollection.AddAnimalToDatabase(animal);
+                    });
+                    thread.Start();
+                }
+                else
+                {
+                    // If the owner doesn't exist, create a new owner and a new AquaticAnimal object
+                    var owner = new Owner
+                    {
+                        Name = ownerNameTextBox.Text
+                    };
+
+                    _applicationDbContext.Owners.Add(owner);
+                    _applicationDbContext.SaveChanges();
+
+                    var animal = new AquaticAnimal
+                    {
+                        OwnerId = owner.Id,
+                        Name = animalName,
+                        Age = age,
+                        Color = color,
+                        NotesToSitter = notesToSitter,
+                        Food = "Food"
+                    };
+
+                    animalCollection.AnimalAdded += AnimalCollection_AnimalAdded;
+
+                    // Create a new thread to add the animal to the database
+                    Thread thread = new Thread(async () =>
+                    {
+                        await animalCollection.AddAnimalToDatabase(animal);
+                    });
+                    thread.Start();
+                }
             }
         }
 
         private void AnimalCollection_AnimalAdded(object sender, AnimalAddedEventArgs e)
         {
             MessageBox.Show($"Successfully added {e.Animal.Name} to the database.");
+        }
+
+        private void AddToDbNotesForSitterLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

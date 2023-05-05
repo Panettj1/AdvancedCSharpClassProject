@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SearchButton = new System.Windows.Forms.Button();
-            this.SearchByNameTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.AddAnimalToDbLabel = new System.Windows.Forms.Label();
             this.AddToDbNameLabel = new System.Windows.Forms.Label();
             this.AddToDbNameTextBox = new System.Windows.Forms.TextBox();
@@ -44,46 +41,29 @@
             this.AddToDbNotesTextBox = new System.Windows.Forms.TextBox();
             this.AddAgeToDbNumberUpDown = new System.Windows.Forms.NumericUpDown();
             this.AddToDbTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.SearchDbTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.SearchByNameTextBox = new System.Windows.Forms.TextBox();
+            this.SearchDbTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.ownerNameLabel = new System.Windows.Forms.Label();
+            this.ownerNameTextBox = new System.Windows.Forms.TextBox();
+            this.ownerIdUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ownerIdLabel = new System.Windows.Forms.Label();
+            this.orLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.AddAgeToDbNumberUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownerIdUpDown)).BeginInit();
             this.SuspendLayout();
-            // 
-            // SearchButton
-            // 
-            this.SearchButton.BackColor = System.Drawing.Color.DodgerBlue;
-            this.SearchButton.Location = new System.Drawing.Point(634, 20);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(132, 23);
-            this.SearchButton.TabIndex = 0;
-            this.SearchButton.Text = "Search";
-            this.SearchButton.UseVisualStyleBackColor = false;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            // 
-            // SearchByNameTextBox
-            // 
-            this.SearchByNameTextBox.Location = new System.Drawing.Point(165, 20);
-            this.SearchByNameTextBox.Name = "SearchByNameTextBox";
-            this.SearchByNameTextBox.Size = new System.Drawing.Size(436, 23);
-            this.SearchByNameTextBox.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(58, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Search By Name:";
             // 
             // AddAnimalToDbLabel
             // 
             this.AddAnimalToDbLabel.AutoSize = true;
-            this.AddAnimalToDbLabel.Location = new System.Drawing.Point(58, 161);
+            this.AddAnimalToDbLabel.Location = new System.Drawing.Point(24, 159);
             this.AddAnimalToDbLabel.Name = "AddAnimalToDbLabel";
-            this.AddAnimalToDbLabel.Size = new System.Drawing.Size(136, 15);
+            this.AddAnimalToDbLabel.Size = new System.Drawing.Size(192, 15);
             this.AddAnimalToDbLabel.TabIndex = 3;
-            this.AddAnimalToDbLabel.Text = "Add Animal To Database";
+            this.AddAnimalToDbLabel.Text = "Request Sitting Services For Animal";
+            this.AddAnimalToDbLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // AddToDbNameLabel
             // 
@@ -104,7 +84,7 @@
             // AddToDbAgeLabel
             // 
             this.AddToDbAgeLabel.AutoSize = true;
-            this.AddToDbAgeLabel.Location = new System.Drawing.Point(58, 275);
+            this.AddToDbAgeLabel.Location = new System.Drawing.Point(58, 252);
             this.AddToDbAgeLabel.Name = "AddToDbAgeLabel";
             this.AddToDbAgeLabel.Size = new System.Drawing.Size(36, 15);
             this.AddToDbAgeLabel.TabIndex = 6;
@@ -113,20 +93,21 @@
             // AddToDbColorLabel
             // 
             this.AddToDbColorLabel.AutoSize = true;
-            this.AddToDbColorLabel.Location = new System.Drawing.Point(58, 338);
+            this.AddToDbColorLabel.Location = new System.Drawing.Point(58, 297);
             this.AddToDbColorLabel.Name = "AddToDbColorLabel";
-            this.AddToDbColorLabel.Size = new System.Drawing.Size(39, 15);
+            this.AddToDbColorLabel.Size = new System.Drawing.Size(44, 15);
             this.AddToDbColorLabel.TabIndex = 7;
-            this.AddToDbColorLabel.Text = "Color:";
+            this.AddToDbColorLabel.Text = "*Color:";
             // 
             // AddToDbNotesForSitterLabel
             // 
             this.AddToDbNotesForSitterLabel.AutoSize = true;
             this.AddToDbNotesForSitterLabel.Location = new System.Drawing.Point(415, 275);
             this.AddToDbNotesForSitterLabel.Name = "AddToDbNotesForSitterLabel";
-            this.AddToDbNotesForSitterLabel.Size = new System.Drawing.Size(91, 15);
+            this.AddToDbNotesForSitterLabel.Size = new System.Drawing.Size(96, 15);
             this.AddToDbNotesForSitterLabel.TabIndex = 8;
-            this.AddToDbNotesForSitterLabel.Text = "Notes For Sitter:";
+            this.AddToDbNotesForSitterLabel.Text = "*Notes For Sitter:";
+            this.AddToDbNotesForSitterLabel.Click += new System.EventHandler(this.AddToDbNotesForSitterLabel_Click);
             // 
             // AddToDbTypeLabel
             // 
@@ -140,11 +121,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(415, 161);
+            this.label3.Location = new System.Drawing.Point(512, 159);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(176, 15);
+            this.label3.Size = new System.Drawing.Size(182, 15);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Boxes Labeld with * are required";
+            this.label3.Text = "Boxes Labeled with * are required";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddToDbSubmitButton
             // 
@@ -153,27 +135,28 @@
             this.AddToDbSubmitButton.Name = "AddToDbSubmitButton";
             this.AddToDbSubmitButton.Size = new System.Drawing.Size(110, 23);
             this.AddToDbSubmitButton.TabIndex = 11;
-            this.AddToDbSubmitButton.Text = "Add";
+            this.AddToDbSubmitButton.Text = "Request";
             this.AddToDbSubmitButton.UseVisualStyleBackColor = false;
             this.AddToDbSubmitButton.Click += new System.EventHandler(this.AddToDbSubmitButton_Click);
             // 
             // AddToDbColorTextBox
             // 
-            this.AddToDbColorTextBox.Location = new System.Drawing.Point(106, 331);
+            this.AddToDbColorTextBox.Location = new System.Drawing.Point(106, 294);
             this.AddToDbColorTextBox.Name = "AddToDbColorTextBox";
             this.AddToDbColorTextBox.Size = new System.Drawing.Size(110, 23);
             this.AddToDbColorTextBox.TabIndex = 13;
             // 
             // AddToDbNotesTextBox
             // 
-            this.AddToDbNotesTextBox.Location = new System.Drawing.Point(578, 272);
+            this.AddToDbNotesTextBox.Location = new System.Drawing.Point(533, 272);
+            this.AddToDbNotesTextBox.Multiline = true;
             this.AddToDbNotesTextBox.Name = "AddToDbNotesTextBox";
-            this.AddToDbNotesTextBox.Size = new System.Drawing.Size(110, 23);
+            this.AddToDbNotesTextBox.Size = new System.Drawing.Size(155, 88);
             this.AddToDbNotesTextBox.TabIndex = 15;
             // 
             // AddAgeToDbNumberUpDown
             // 
-            this.AddAgeToDbNumberUpDown.Location = new System.Drawing.Point(106, 272);
+            this.AddAgeToDbNumberUpDown.Location = new System.Drawing.Point(106, 252);
             this.AddAgeToDbNumberUpDown.Name = "AddAgeToDbNumberUpDown";
             this.AddAgeToDbNumberUpDown.Size = new System.Drawing.Size(110, 23);
             this.AddAgeToDbNumberUpDown.TabIndex = 16;
@@ -186,13 +169,14 @@
             this.AddToDbTypeComboBox.Size = new System.Drawing.Size(110, 23);
             this.AddToDbTypeComboBox.TabIndex = 17;
             // 
-            // SearchDbTypeComboBox
+            // label1
             // 
-            this.SearchDbTypeComboBox.FormattingEnabled = true;
-            this.SearchDbTypeComboBox.Location = new System.Drawing.Point(327, 63);
-            this.SearchDbTypeComboBox.Name = "SearchDbTypeComboBox";
-            this.SearchDbTypeComboBox.Size = new System.Drawing.Size(110, 23);
-            this.SearchDbTypeComboBox.TabIndex = 19;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(58, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Search By Name:";
             // 
             // label2
             // 
@@ -203,11 +187,84 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "*Type(Aqautic/Land Animal)";
             // 
+            // SearchByNameTextBox
+            // 
+            this.SearchByNameTextBox.Location = new System.Drawing.Point(165, 20);
+            this.SearchByNameTextBox.Name = "SearchByNameTextBox";
+            this.SearchByNameTextBox.Size = new System.Drawing.Size(436, 23);
+            this.SearchByNameTextBox.TabIndex = 1;
+            // 
+            // SearchDbTypeComboBox
+            // 
+            this.SearchDbTypeComboBox.FormattingEnabled = true;
+            this.SearchDbTypeComboBox.Location = new System.Drawing.Point(327, 63);
+            this.SearchDbTypeComboBox.Name = "SearchDbTypeComboBox";
+            this.SearchDbTypeComboBox.Size = new System.Drawing.Size(110, 23);
+            this.SearchDbTypeComboBox.TabIndex = 19;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.BackColor = System.Drawing.Color.DodgerBlue;
+            this.SearchButton.Location = new System.Drawing.Point(634, 20);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(132, 23);
+            this.SearchButton.TabIndex = 0;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = false;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // ownerNameLabel
+            // 
+            this.ownerNameLabel.AutoSize = true;
+            this.ownerNameLabel.Location = new System.Drawing.Point(17, 345);
+            this.ownerNameLabel.Name = "ownerNameLabel";
+            this.ownerNameLabel.Size = new System.Drawing.Size(85, 15);
+            this.ownerNameLabel.TabIndex = 20;
+            this.ownerNameLabel.Text = "*Owner Name:";
+            // 
+            // ownerNameTextBox
+            // 
+            this.ownerNameTextBox.Location = new System.Drawing.Point(106, 342);
+            this.ownerNameTextBox.Name = "ownerNameTextBox";
+            this.ownerNameTextBox.Size = new System.Drawing.Size(110, 23);
+            this.ownerNameTextBox.TabIndex = 21;
+            // 
+            // ownerIdUpDown
+            // 
+            this.ownerIdUpDown.Location = new System.Drawing.Point(106, 402);
+            this.ownerIdUpDown.Name = "ownerIdUpDown";
+            this.ownerIdUpDown.Size = new System.Drawing.Size(110, 23);
+            this.ownerIdUpDown.TabIndex = 22;
+            // 
+            // ownerIdLabel
+            // 
+            this.ownerIdLabel.AutoSize = true;
+            this.ownerIdLabel.Location = new System.Drawing.Point(17, 384);
+            this.ownerIdLabel.Name = "ownerIdLabel";
+            this.ownerIdLabel.Size = new System.Drawing.Size(142, 15);
+            this.ownerIdLabel.TabIndex = 23;
+            this.ownerIdLabel.Text = "*Id(If returning customer)";
+            this.ownerIdLabel.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // orLabel
+            // 
+            this.orLabel.AutoSize = true;
+            this.orLabel.Location = new System.Drawing.Point(58, 369);
+            this.orLabel.Name = "orLabel";
+            this.orLabel.Size = new System.Drawing.Size(23, 15);
+            this.orLabel.TabIndex = 24;
+            this.orLabel.Text = "OR";
+            // 
             // DatabaseQueryPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.orLabel);
+            this.Controls.Add(this.ownerIdLabel);
+            this.Controls.Add(this.ownerIdUpDown);
+            this.Controls.Add(this.ownerNameTextBox);
+            this.Controls.Add(this.ownerNameLabel);
             this.Controls.Add(this.SearchDbTypeComboBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.AddToDbTypeComboBox);
@@ -229,16 +286,13 @@
             this.Name = "DatabaseQueryPage";
             this.Text = "DatabaseQueryPage";
             ((System.ComponentModel.ISupportInitialize)(this.AddAgeToDbNumberUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownerIdUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-         
-        private Button SearchButton;
-        private TextBox SearchByNameTextBox;
-        private Label label1;
         private Label AddAnimalToDbLabel;
         private Label AddToDbNameLabel;
         private TextBox AddToDbNameTextBox;
@@ -252,7 +306,15 @@
         private TextBox AddToDbNotesTextBox;
         private NumericUpDown AddAgeToDbNumberUpDown;
         private ComboBox AddToDbTypeComboBox;
-        private ComboBox SearchDbTypeComboBox;
+        private Label label1;
         private Label label2;
+        private TextBox SearchByNameTextBox;
+        private ComboBox SearchDbTypeComboBox;
+        private Button SearchButton;
+        private Label ownerNameLabel;
+        private TextBox ownerNameTextBox;
+        private NumericUpDown ownerIdUpDown;
+        private Label ownerIdLabel;
+        private Label orLabel;
     }
 }
